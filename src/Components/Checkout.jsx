@@ -12,11 +12,11 @@ function Checkout() {
         Please fill in the below information to receive your Rs 100 voucher{" "}
       </p>
     </div>
-    <div className="flex justify-center items-start gap-14 mt-20">
+    <div className="flex flex-wrap justify-center items-start gap-14 mt-20">
       <div>
         <img className="rounded-lg w-96 scale-75" src={card} alt="" />
       </div>
-      <form className="w-[29rem]" action="">
+      <form className="w-72 sm:w-[29rem]" action="">
         <div className="flex flex-col mb-4 items-start">
           <label className="font-semibold text-base" htmlFor="">
             Name

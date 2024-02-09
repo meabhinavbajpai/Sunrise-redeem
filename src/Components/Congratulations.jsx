@@ -15,30 +15,31 @@ function Congratulations() {
       </div>
       <div className="mt-5 flex flex-col items-center">
         <h2 className="text-base ">Order Details</h2>
-        <table className="mt-6">
-          <thead>
-            <tr>
-              <th className="p-1.5 px-16 bg-slate-100 border font-semibold">
-                Code
-              </th>
-              <th className="p-1.5 px-16 bg-slate-100 border font-semibold">
-                Pin
-              </th>
-              <th className="p-1.5 px-16 bg-slate-100 border font-semibold">
-                Expiry
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className="p-1.5 px-6 border">76382109649826347</td>
-              <td className="p-1.5 px-6 border">0332</td>
-              <td className="p-1.5 px-6 border">2025-03-12</td>
-            </tr>
-          </tbody>
-        </table>
-        <div className="mt-5">Voucher Sent on Email and SMS</div>
-        <div className="font-medium text-base text-slate-400">Need help email us at <span className='text-custom'>support@credancerewards.com</span> </div>
+        <table className="mt-6 w-full sm:w-auto">
+  <thead>
+    <tr>
+      <th className="p-1.5 px-2 sm:px-16 bg-slate-100 border font-semibold">
+        Code
+      </th>
+      <th className="p-1.5 px-2 sm:px-16 bg-slate-100 border font-semibold">
+        Pin
+      </th>
+      <th className="p-1.5 px-2 sm:px-16 bg-slate-100 border font-semibold">
+        Expiry
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td className="p-1.5 px-2 sm:px-6 border">76382109649826347</td>
+      <td className="p-1.5 px-2 sm:px-6 border">0332</td>
+      <td className="p-1.5 px-2 sm:px-6 border">2025-03-12</td>
+    </tr>
+  </tbody>
+</table>
+
+        <div className="mt-5 text-center">Voucher Sent on Email and SMS</div>
+        <div className="font-medium text-center text-base text-slate-400">Need help email us at <span className='text-custom'>support@credancerewards.com</span> </div>
       </div>
     </div>
    
