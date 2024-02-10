@@ -1,9 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import logo from "../assets/sunrise-logo.png";
+import { Link, useNavigate } from "react-router-dom";
 
 function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const ref = useRef(null);
+  const navigate=useNavigate()
+
 
 
   useEffect(() => {
@@ -19,17 +22,17 @@ function Navbar() {
   };
   return (
     <nav className="flex justify-between items-center h-30 py-4 px-8  text-black shadow-lg">
-      <div className="flex items-center">
+      <div className="flex items-center"onClick={()=>navigate("/")} >
         <img className=" top-7 left-16  h-12 md:ml-10" src={logo} alt="Logo" />
       </div>
     
       <div className="hidden md:block flex items-center">
-        <a
+        <Link
           className="hover:text-gray-500 font-normal text-md text-black font-inter"
-          href="#"
+          to="/terms&condition"
         >
           Term & Conditions
-        </a>
+        </Link>
         <button className="inline-block mr-6 ml-6 bg-custom text-white py-2 px-4 rounded font-medium font-inter text-md">
           Contact Support
         </button>

@@ -1,8 +1,59 @@
 import React from 'react'
 import redeemImg from "../assets/howtoredeem.png"
 import { Link } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+
+import { useDispatch } from "react-redux";
+
+import { useState } from "react";
+import { setData } from '../redux/reducers/voucherSlice';
+import { getVoucherInfo } from '../services/ApiServices';
 
 function RedeemCodeScreen() {
+  const navigate = useNavigate();
+  const dispatch=useDispatch()
+  const [loading,setIsLoading]=useState(false)
+  const validationSchema = Yup.object({
+    code: Yup.string()
+      .required('Code is required')
+      .test('is-15-characters', 'Code must be  15 characters', (value) => {
+        return value && value.length === 15;
+      }),
+  });
+  
+
+  const formik = useFormik({
+    initialValues: {
+      code: "",
+     
+    },
+    validationSchema,
+    onSubmit: (values) => {
+      handleSubmit(values)
+    },
+  });
+
+  const handleSubmit=async(values)=>{
+    setIsLoading(true)
+    try {
+      let response=await getVoucherInfo(values?.code)
+      if(response?.status==200){
+        setIsLoading(false)
+      navigate("/products")
+      dispatch(setData({data:response?.data,
+       code:values?.code
+      }))
+
+      }else{
+setIsLoading(false)
+      }
+    } catch (error) {
+      setIsLoading(false)
+      console.log(error)
+    }
+  }
   return (
     <>
           <div className="flex justify-center flex-col items-center mt-20">
@@ -22,23 +73,25 @@ function RedeemCodeScreen() {
       placeholder:text-center text-center
       border-gray-400`}
       placeholder="Enter your code"
- 
+      onChange={formik.handleChange}
+      onBlur={formik.handleBlur}
+      value={formik.values.code}
     />
 
-    {/* {formik.touched.code && formik.errors.code ? (
+    {formik.touched.code && formik.errors.code ? (
       <div className="text-red-500 mt-2 text-center">{formik.errors.code}</div>
-    ) : null} */}
+    ) : null}
   </div>
 </div>
 
       <div className="flex justify-center  flex-col items-center">
-        <Link
-          to="/products"
+        <button
+            onClick={() => formik.handleSubmit()}
         
           className=" bg-custom text-white font-medium text-xl px-10 py-3 rounded outline-none focus:outline-none"
         >
           Redeem
-        </Link>
+        </button>
       </div>
 
       <div className="flex justify-center mt-20 flex-col items-center">

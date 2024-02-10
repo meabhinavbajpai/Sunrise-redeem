@@ -1,8 +1,11 @@
 import React from 'react'
 import card from "../assets/demopro.png"
+import { useSelector } from 'react-redux'
 
 
 function Congratulations() {
+  const details=useSelector((state)=>state?.finalDetail?.data?.data)
+  const image=useSelector((state)=>state?.finalDetail?.image)
   return (
     <div>
     <div className="mt-12">
@@ -11,7 +14,7 @@ function Congratulations() {
         Your voucher Details
       </p>
       <div className="flex justify-center mt-5">
-        <img className="w-72 rounded-md" src={card} alt="" />
+        <img className="w-72 rounded-md"  src={"https://cr-code.credencerewards.com"+image} alt="" />
       </div>
       <div className="mt-5 flex flex-col items-center">
         <h2 className="text-base ">Order Details</h2>
@@ -31,9 +34,9 @@ function Congratulations() {
   </thead>
   <tbody>
     <tr>
-      <td className="p-1.5 px-2 sm:px-6 border">76382109649826347</td>
-      <td className="p-1.5 px-2 sm:px-6 border">0332</td>
-      <td className="p-1.5 px-2 sm:px-6 border">2025-03-12</td>
+      <td className="p-1.5 px-2 sm:px-6 border">{details?.voucher?.code}</td>
+      <td className="p-1.5 px-2 sm:px-6 border">{details?.voucher?.pin}</td>
+      <td className="p-1.5 px-2 sm:px-6 border">{details?.voucher?.expiry}</td>
     </tr>
   </tbody>
 </table>
