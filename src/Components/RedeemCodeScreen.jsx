@@ -18,8 +18,8 @@ function RedeemCodeScreen() {
   const validationSchema = Yup.object({
     code: Yup.string()
       .required('Code is required')
-      .test('is-15-characters', 'Code must be  15 characters', (value) => {
-        return value && value.length === 15;
+      .test('is-16-characters', 'Code must be  16 characters', (value) => {
+        return value && value.length === 16;
       }),
   });
   

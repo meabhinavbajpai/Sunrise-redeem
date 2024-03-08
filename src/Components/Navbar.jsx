@@ -33,9 +33,10 @@ function Navbar() {
         >
           Term & Conditions
         </Link>
-        <button className="inline-block mr-6 ml-6 bg-custom text-white py-2 px-4 rounded font-medium font-inter text-md">
+      
+        <a href="mailto:support@credencerewards.com?subject=Issue related to order on Credence Rewards.com" className="inline-block mr-6 ml-6 bg-custom text-white py-2 px-4 rounded font-medium font-inter text-md">
           Contact Support
-        </button>
+        </a>
       </div>
       <div className="md:hidden flex  ml-4 cursor-pointer" ref={ref}>
         <button
