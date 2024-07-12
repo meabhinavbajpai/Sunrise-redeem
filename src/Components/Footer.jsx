@@ -4,7 +4,7 @@ import PowerLogo from "../assets/poweredby.png";
 function Footer() {
   return (
     <>
-      <footer className="py-4 bottom-0 left-0 w-full ">
+      <footer className="py-4 bottom-0 mt-10 left-0 w-full ">
       <p className="text-sm text-black text-center">
         {/* Centered copyright text */}
         <span className="block sm:inline-block">Coyright &copy; {new Date().getFullYear()}. All rights reserved by Credence rewards.</span>

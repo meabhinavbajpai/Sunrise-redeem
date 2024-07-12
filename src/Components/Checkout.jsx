@@ -15,7 +15,7 @@ function Checkout() {
   const productDetail = useSelector((state) => state?.productDetail?.data);
   const amount = useSelector((state) => state?.productDetail?.amount);
   const code = useSelector((state) => state?.productDetail?.code);
-  const [loading,setIsLoading]=useState(false)
+  const [loading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -49,7 +49,7 @@ function Checkout() {
     },
   });
   const handleSubmit = async (values) => {
-    setIsLoading(true)
+    setIsLoading(true);
     let body = {
       credence_code: code,
       provider_id: productDetail?.id,
@@ -60,7 +60,7 @@ function Checkout() {
     try {
       let response = await redeemVoucher(body);
       if (response?.status == 200) {
-        setIsLoading(false)
+        setIsLoading(false);
         navigate("/congratulation");
         dispatch(
           setData({
@@ -72,17 +72,15 @@ function Checkout() {
         dispatch(resetProductData());
         showNotification("success", response?.data?.message);
       } else {
-        setIsLoading(false)
-
+        setIsLoading(false);
       }
     } catch (error) {
-      setIsLoading(false)
-
+      setIsLoading(false);
     }
   };
   return (
-    <div>
-      <div className="mt-12">
+    <div className="bg-gray-200 py-12">
+      <div className="">
         <h2 className="text-center text-2xl font-semibold">Congratulation🌟</h2>
         <p className="text-base text-center">
           Please fill in the below information to receive your Rs {amount}{" "}
@@ -93,7 +91,7 @@ function Checkout() {
         <div>
           <div className="flex flex-row justify-center ">
             {" "}
-            <Link to="/products">
+            <Link to="/products" className="flex justify-center items-center">
               <svg
                 width="40px"
                 id="Layer_1"
@@ -106,8 +104,8 @@ function Checkout() {
               >
                 <polygon points="64.5,256.5 256.5,448.5 256.5,336.5 448.5,336.5 448.5,176.5 256.5,176.5 256.5,64.5 " />
               </svg>
+              <span className="">Pick another brand</span>
             </Link>
-            <span className="mt-3">Change</span>
           </div>
           <img
             className="rounded-lg w-96 scale-75"
@@ -193,22 +191,23 @@ function Checkout() {
             any third party.
           </div>
           <div className="flex justify-end mt-5">
-            {
-              loading ?   <button
-              type="button"
-              className="bg-[#801423] p-2.5 text-white"
-              disabled
-            >
-              Processing...
-            </button>:  <button
-              type="button"
-              className="bg-[#801423] p-2.5 text-white"
-              onClick={formik.handleSubmit}
-            >
-              Proceed
-            </button>
-            }
-          
+            {loading ? (
+              <button
+                type="button"
+                className="bg-[#801423] p-2.5 text-white"
+                disabled
+              >
+                Processing...
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="bg-[#801423] p-2.5 text-white"
+                onClick={formik.handleSubmit}
+              >
+                Proceed
+              </button>
+            )}
           </div>
         </form>
       </div>

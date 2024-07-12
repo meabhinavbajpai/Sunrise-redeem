@@ -18,10 +18,10 @@ function Products() {
 
     setFilterProduct(filteredProducts);
   };
-
+  console.log(filterProduct);
   return (
-    <div className="flex justify-center mt-20 my-20 flex-col items-center">
-      <h2 className="md:text-2xl font-extrabold text-xl">
+    <div className="flex justify-center py-24 flex-col items-center bg-gray-200">
+      <h2 className="md:text-2xl  font-extrabold text-xl">
         Choose a voucher | Amount - ₹{products?.amount}
       </h2>
 
@@ -35,7 +35,7 @@ function Products() {
             <input
               type="text"
               id="search-by-name"
-              class="py-5  border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5   dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              class="py-5  border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5   dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Search by keywords"
               onChange={(e) => handleSearch(e.target.value)}
             />
@@ -73,31 +73,43 @@ function Products() {
           <>
             {filterProduct?.map((data, index) => {
               return (
-                <div
-                  class="w-fit
-                   bg-gray-50 border border-gray-200 rounded
+                <>
+                  {data?.logo !== null && (
+                    <div
+                      class="
+                      w-52 h-52 mx-auto rounded-3xl
         cursor-pointer   
-        hover:shadow-lg
+        
         transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110
   
         "
-                  onClick={() => {
-                    dispatch(
-                      setProduct({
-                        data: data,
-                        amount: products?.amount,
-                        code: code,
-                      })
-                    );
-                    navigate("/checkout");
-                  }}
-                >
-                  <img
-                    className="rounded w-52 h-36"
-                    src={"https://cr-code.credencerewards.com"+data?.logo}
-                    alt="product"
-                  />
-                </div>
+                      onClick={() => {
+                        dispatch(
+                          setProduct({
+                            data: data,
+                            amount: products?.amount,
+                            code: code,
+                          })
+                        );
+                        navigate("/checkout");
+                      }}
+                    >
+                      <div className="">
+                        <img
+                          className=""
+                          src={
+                            "https://cr-code.credencerewards.com" + data?.logo
+                          }
+                          alt="product"
+                        />
+                      </div>
+
+                      <div className="text-center   py-2">
+                        {data?.product_name}
+                      </div>
+                    </div>
+                  )}
+                </>
               );
             })}
           </>
